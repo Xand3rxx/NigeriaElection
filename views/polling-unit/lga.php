@@ -103,7 +103,15 @@ use app\models\Lga;
 $(document).ready(function(){
     $('#lga-lga_name').on('change', function(){
         let uid = $(this).val();
-        var counter, cat, dpp, ppa, cdc, jp, anpp, labo, cpp = 0;
+        var counter = 0;
+        var cat = 0;
+        var dpp = 0;
+        var ppa = 0;
+        var cdc =0;
+        var jp = 0;
+        var anpp = 0;
+        var labo = 0;
+        var cpp = 0;
         $('#ash, #results').empty();
         $.get('index.php?r=site/lga-results', {id : uid}, function(data){
             var data = $.parseJSON(data);
@@ -120,9 +128,11 @@ $(document).ready(function(){
 
                 //Try and get total for PDP
                 let pdp = data[i].uniqueid;
+                
+
 $.get('index.php?r=site/pdp', {id : pdp}, function(data){
     var data = $.parseJSON(data);
-    
+   
     for(i=0; i<data.length;i++){
         counter += parseInt(data[i].party_score);
     }
